@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { useCart } from './CartContext';
+import { useAuth } from "../AuthContext";
 import { CreditCard, ArrowLeft } from 'lucide-react';
 
 // Get the backend URL from environment or use default
@@ -11,6 +12,7 @@ const PaymentPage = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const { items, clearCart } = useCart();
+    const { isSignedIn, userId } = useAuth();
     const [formData, setFormData] = useState({
         fullName: '',
         email: '',
@@ -26,10 +28,18 @@ const PaymentPage = () => {
     // Get cart data from location state or calculate from useCart
     const cartData = location.state || {};
 
+    // Redirect if not signed in
+    useEffect(() => {
+        if (!isSignedIn) {
+            navigate('/signin');
+            return;
+        }
+    }, [isSignedIn, navigate]);
+
     const getCartItems = () => {
         return cartData.cartItems || items;
     };
-
+    
     const getSubtotal = () => {
         if (cartData.subtotal) return cartData.subtotal;
         return getCartItems().reduce((total, item) => {
@@ -141,7 +151,8 @@ const PaymentPage = () => {
                     currency: 'INR',
                     receipt: 'order_rcptid_' + Date.now(),
                     customerDetails: formData,
-                    cartItems: getCartItems()
+                    cartItems: getCartItems(),
+                    userId: userId // Include the user ID from authentication
                 }),
             });
 
@@ -184,7 +195,8 @@ const PaymentPage = () => {
                             razorpaySignature: response.razorpay_signature,
                             customerDetails: formData,
                             cartItems: getCartItems(),
-                            amount: getTotal()
+                            amount: getTotal(),
+                            userId: userId // Include user ID here too
                         }),
                     })
                         .then(res => {
@@ -282,10 +294,10 @@ const PaymentPage = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // If cart is empty and no state was passed, redirect to home
+    // If cart is empty and no state was passed, redirect to home or services
     useEffect(() => {
         if (getCartItems().length === 0 && !cartData.total) {
-            navigate('/');
+            navigate('/services');
         }
     }, [cartData, items, navigate]);
 
@@ -426,6 +438,17 @@ const PaymentPage = () => {
                             </div>
 
                             <div className="bg-indigo-50 p-6 rounded-lg">
+                                <h3 className="font-semibold text-gray-800 mb-4">Order Summary</h3>
+                                {getCartItems().map((item) => (
+                                    <div key={item.id} className="flex justify-between mb-3 pb-3 border-b border-indigo-100">
+                                        <div>
+                                            <h4 className="font-medium">{item.name}</h4>
+                                            {item.quantity && <p className="text-sm text-gray-600">Quantity: {item.quantity}</p>}
+                                            {item.nights && <p className="text-sm text-gray-600">Nights: {item.nights}</p>}
+                                        </div>
+                                        <span className="font-medium">₹{item.price.toFixed(2)}</span>
+                                    </div>
+                                ))}
                                 <div className="flex justify-between mb-4">
                                     <span className="text-gray-700">Subtotal</span>
                                     <span className="font-medium">₹{getSubtotal().toFixed(2)}</span>

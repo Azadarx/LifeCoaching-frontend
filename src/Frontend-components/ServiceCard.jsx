@@ -5,13 +5,14 @@ import { useCart } from './CartContext';
 const ServiceCard = ({ service }) => {
   const { addItem, isSignedIn } = useCart();
   const navigate = useNavigate();
+  const isInCart = items.some(item => item.id === `service-${service.id}`);
 
   const handleAddToCart = () => {
     if (!isSignedIn) {
-      navigate('/sign-in');
+      navigate('/signin');
       return;
     }
-    
+
     addItem({
       id: `service-${service.id}`,
       name: service.title,
@@ -32,9 +33,13 @@ const ServiceCard = ({ service }) => {
         <span className="text-teal-600 font-bold text-xl">₹{service.price}</span>
         <button
           onClick={handleAddToCart}
-          className="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300"
+          disabled={isInCart}
+          className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${isInCart
+              ? 'bg-gray-300 text-gray-600 cursor-not-allowed'
+              : 'bg-teal-600 hover:bg-teal-700 text-white'
+            }`}
         >
-          Add to Cart
+          {isInCart ? 'Added' : 'Add to Cart'}
         </button>
       </div>
     </div>

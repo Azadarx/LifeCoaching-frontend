@@ -1,77 +1,80 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { useAuth, useUser } from '@clerk/clerk-react';
+import React, { createContext, useContext, useState, useEffect, useRef } from 'react';
+import { useAuth } from "../AuthContext";
 import { useNavigate } from 'react-router-dom';
 
 const CartContext = createContext();
 
+export const useCart = () => useContext(CartContext);
+
 export const CartProvider = ({ children }) => {
-  const { isSignedIn, userId } = useAuth();
-  const { user } = useUser();
+  const { isSignedIn, userId, isLoaded } = useAuth();
   const navigate = useNavigate();
 
-  // Get the cart storage key specific to this user
-  const getCartKey = () => {
-    return `userCart_${userId || 'guest'}`;
-  };
-
-  // Cart items state
   const [items, setItems] = useState([]);
-
-  // Cart visibility state
   const [isCartOpen, setIsCartOpen] = useState(false);
 
-  // Load cart when auth state changes or user ID is available
+  const hasLoadedCart = useRef(false);
+  const lastUserId = useRef(null);
+
+  const getCartKey = () => {
+    if (isSignedIn && userId) return `userCart_${userId}`;
+    return 'userCart_guest';
+  };
+
+  // 🧠 Load cart when user ID changes AND after auth is loaded
   useEffect(() => {
-    if (isSignedIn && userId) {
-      const cartKey = getCartKey();
-      const savedCart = localStorage.getItem(cartKey);
-      
-      if (savedCart) {
-        try {
-          setItems(JSON.parse(savedCart));
-        } catch (error) {
-          console.error('Failed to parse cart from localStorage:', error);
-          setItems([]);
+    if (!isLoaded) return;
+
+    const cartKey = getCartKey();
+
+    // Only reload if user actually changed
+    if (hasLoadedCart.current && lastUserId.current === userId) return;
+
+    const savedCart = localStorage.getItem(cartKey);
+    if (savedCart) {
+      try {
+        const parsed = JSON.parse(savedCart);
+        if (Array.isArray(parsed)) {
+          setItems(parsed);
+          console.log('✅ Cart loaded:', cartKey);
         }
-      } else {
-        // No saved cart for this user, start with empty cart
-        setItems([]);
+      } catch (e) {
+        console.error('❌ Failed to parse cart for', cartKey);
       }
     } else {
-      // User is not signed in, clear the cart
-      setItems([]);
+      console.log('🆕 No cart found for', cartKey);
+      setItems([]); // start fresh
     }
-  }, [isSignedIn, userId]);
 
-  // Save cart to localStorage when items change
+    hasLoadedCart.current = true;
+    lastUserId.current = userId;
+  }, [isLoaded, userId]);
+
+  // 💾 Save cart when items/user change
   useEffect(() => {
-    if (isSignedIn && userId) {
-      const cartKey = getCartKey();
-      localStorage.setItem(cartKey, JSON.stringify(items));
-    }
-  }, [items, isSignedIn, userId]);
+    if (!hasLoadedCart.current) return;
+    const cartKey = getCartKey();
+    localStorage.setItem(cartKey, JSON.stringify(items));
+    console.log('💾 Cart saved:', cartKey);
+  }, [items, userId]);
 
-  // Add or update item in cart
   const addItem = (newItem) => {
     if (!isSignedIn) {
-      navigate('/sign-in');
+      navigate('/signin');
       return;
     }
-
-    setItems(prevItems => {
-      const existing = prevItems.find(item => item.id === newItem.id);
-      if (existing) {
-        return prevItems.map(item =>
-          item.id === newItem.id
-            ? { ...item, quantity: (item.quantity || 1) + (newItem.quantity || 1) }
-            : item
-        );
-      }
-      return [...prevItems, newItem];
-    });
-
-    setIsCartOpen(true); // Auto open cart
+  
+    // Check BEFORE state update
+    const exists = items.some(item => item.id === newItem.id);
+    if (exists) {
+      console.log('🛑 Item already in cart:', newItem.id);
+      return; // ⛔ Don't add or open cart
+    }
+  
+    setItems(prevItems => [...prevItems, newItem]);
+    setIsCartOpen(true); // ✅ Only open if new item is added
   };
+  
 
   const removeItem = (id) => {
     setItems(prev => prev.filter(item => item.id !== id));
@@ -79,22 +82,20 @@ export const CartProvider = ({ children }) => {
 
   const updateQuantity = (id, change) => {
     setItems(prev =>
-      prev.map(item => {
-        if (item.id === id) {
-          const newQty = Math.max(1, (item.quantity || 1) + change);
-          return { ...item, quantity: newQty };
-        }
-        return item;
-      })
+      prev.map(item =>
+        item.id === id
+          ? { ...item, quantity: Math.max(1, (item.quantity || 1) + change) }
+          : item
+      )
     );
   };
 
   const clearCart = () => {
+    const cartKey = getCartKey();
+    localStorage.removeItem(cartKey);
     setItems([]);
-    if (isSignedIn && userId) {
-      localStorage.removeItem(getCartKey());
-    }
     setIsCartOpen(false);
+    console.log('🗑️ Cart cleared:', cartKey);
   };
 
   const toggleCart = () => setIsCartOpen(prev => !prev);
@@ -117,5 +118,3 @@ export const CartProvider = ({ children }) => {
     </CartContext.Provider>
   );
 };
-
-export const useCart = () => useContext(CartContext);

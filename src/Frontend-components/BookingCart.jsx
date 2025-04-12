@@ -1,15 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ShoppingCart, X, ChevronRight, CreditCard, Trash2, LogIn } from 'lucide-react';
 import { useCart } from './CartContext';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '@clerk/clerk-react';
+import { useAuth } from "../AuthContext";
 
 const BookingCart = ({ className = '' }) => {
-  const { items, clearCart, isSignedIn } = useCart();
+  const { items, clearCart } = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-  const { isLoaded } = useAuth();
+  const { isSignedIn, isLoaded, userId } = useAuth();
+
+  // Add currentUserId state to track user changes
+  const [currentUserId, setCurrentUserId] = useState(userId);
+
+  // When user changes, update the tracking state
+  useEffect(() => {
+    if (userId !== currentUserId) {
+      setCurrentUserId(userId);
+    }
+  }, [userId, currentUserId]);
 
   const getTotal = () => {
     return items.reduce((total, item) => {
@@ -25,12 +35,12 @@ const BookingCart = ({ className = '' }) => {
 
   const handleSignIn = () => {
     setIsOpen(false);
-    navigate('/sign-in');
+    navigate('/signin');
   };
 
   const handleCheckout = () => {
     if (!isSignedIn) {
-      navigate('/sign-in');
+      navigate('/signin');
     } else {
       setIsOpen(false);
       navigate('/payment');

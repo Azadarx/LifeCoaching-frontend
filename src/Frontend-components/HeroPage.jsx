@@ -5,15 +5,16 @@ import { Link } from 'react-router-dom';
 import { useCart } from './CartContext';
 import { useNavigate } from 'react-router-dom';
 import BookingCart from './BookingCart';
-import UserMenu from '../clerk/UserMenu';
+import UserMenu from '../auth/UserMenu';
 
 
 const HeroPage = () => {
-    const { addItem } = useCart();
+    const { items, addItem } = useCart();
     const [activeSection, setActiveSection] = useState('home');
     const [scrollY, setScrollY] = useState(0);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const navigate = useNavigate();
+
 
     useEffect(() => {
         const handleScroll = () => {
@@ -555,7 +556,7 @@ const HeroPage = () => {
                                     visible: {
                                         opacity: 1,
                                         y: 0,
-                                        transition: { delay: index * 0.1, duration: 0.5 }
+                                        transition: { delay: index * 0.05, duration: 0.3 }
                                     }
                                 }}
                                 className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
@@ -618,48 +619,57 @@ const HeroPage = () => {
                     </motion.div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {webinars.map((webinar, index) => (
-                            <motion.div
-                                key={webinar.id}
-                                initial="hidden"
-                                whileInView="visible"
-                                viewport={{ once: true, amount: 0.3 }}
-                                variants={{
-                                    hidden: { opacity: 0, scale: 0.9 },
-                                    visible: {
-                                        opacity: 1,
-                                        scale: 1,
-                                        transition: { delay: index * 0.1, duration: 0.5 }
-                                    }
-                                }}
-                                className="bg-gradient-to-br from-teal-50 to-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
-                            >
-                                <div className="p-8">
-                                    <div className="text-4xl mb-4 bg-white w-16 h-16 flex items-center justify-center rounded-full mx-auto shadow-sm">
-                                        {webinar.icon}
+                        {webinars.map((webinar, index) => {
+                            const isInCart = items.some(item => item.id === `webinar-${webinar.id}`);
+                            return (
+                                <motion.div
+                                    key={webinar.id}
+                                    initial="hidden"
+                                    whileInView="visible"
+                                    viewport={{ once: true, amount: 0.3 }}
+                                    variants={{
+                                        hidden: { opacity: 0, scale: 0.9 },
+                                        visible: {
+                                            opacity: 1,
+                                            scale: 1,
+                                            transition: { delay: index * 0.05, duration: 0.3 }
+                                        }
+                                    }}
+                                    className="bg-gradient-to-br from-teal-50 to-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+                                >
+                                    <div className="p-8">
+                                        <div className="text-4xl mb-4 bg-white w-16 h-16 flex items-center justify-center rounded-full mx-auto shadow-sm">
+                                            {webinar.icon}
+                                        </div>
+                                        <h3 className="text-xl font-bold mb-4 text-gray-800 text-center">{webinar.title}</h3>
+                                        <p className="text-gray-600 mb-6 text-center">{webinar.description}</p>
+                                        <div className="flex justify-between items-center">
+                                            <span className="text-teal-600 font-bold text-xl">₹{webinar.price}</span>
+                                            <button
+                                                onClick={() =>
+                                                    !isInCart &&
+                                                    addItem({
+                                                        id: `webinar-${webinar.id}`,
+                                                        name: webinar.title,
+                                                        price: webinar.price,
+                                                        quantity: 1,
+                                                        icon: webinar.icon
+                                                    })
+                                                }
+                                                disabled={isInCart}
+                                                className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${isInCart
+                                                        ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                                                        : 'bg-teal-600 hover:bg-teal-700 text-white'
+                                                    }`}
+                                            >
+                                                {isInCart ? 'Added' : 'Add to Cart'}
+                                            </button>
+                                        </div>
                                     </div>
-                                    <h3 className="text-xl font-bold mb-4 text-gray-800 text-center">{webinar.title}</h3>
-                                    <p className="text-gray-600 mb-6 text-center">{webinar.description}</p>
-                                    <div className="flex justify-between items-center">
-                                        <span className="text-teal-600 font-bold text-xl">₹{webinar.price}</span>
-                                        <button
-                                            onClick={() =>
-                                                addItem({
-                                                    id: `webinar-${webinar.id}`,
-                                                    name: webinar.title,
-                                                    price: webinar.price,
-                                                    quantity: 1,
-                                                    image: "/api/placeholder/100/100"
-                                                })
-                                            }
-                                            className="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300"
-                                        >
-                                            Add to Cart
-                                        </button>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
+                                </motion.div>
+                            );
+                        })}
+
                     </div>
 
                     <motion.div
@@ -721,7 +731,7 @@ const HeroPage = () => {
                             className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
                         >
                             <div className="flex items-center mb-4">
-                                <img src="/api/placeholder/60/60" alt="Client" className="w-12 h-12 rounded-full mr-4" />
+                                <img src="https://media.istockphoto.com/id/1987655119/photo/smiling-young-businesswoman-standing-in-the-corridor-of-an-office.jpg?s=612x612&w=0&k=20&c=5N_IVGYsXoyj-H9vEiZUCLqbmmineaemQsKt2NTXGms=" alt="Client" className="w-12 h-12 rounded-full mr-4" />
                                 <div>
                                     <h4 className="font-bold text-gray-800">Priya Sharma</h4>
                                     <p className="text-gray-500 text-sm">Marketing Professional</p>
@@ -740,7 +750,7 @@ const HeroPage = () => {
                             className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
                         >
                             <div className="flex items-center mb-4">
-                                <img src="/api/placeholder/60/60" alt="Client" className="w-12 h-12 rounded-full mr-4" />
+                                <img src="https://static.vecteezy.com/system/resources/previews/049/174/246/non_2x/a-smiling-young-indian-man-with-formal-shirts-outdoors-photo.jpg" alt="Client" className="w-12 h-12 rounded-full mr-4" />
                                 <div>
                                     <h4 className="font-bold text-gray-800">Rahul Mehta</h4>
                                     <p className="text-gray-500 text-sm">Software Engineer</p>
@@ -759,7 +769,7 @@ const HeroPage = () => {
                             className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
                         >
                             <div className="flex items-center mb-4">
-                                <img src="/api/placeholder/60/60" alt="Client" className="w-12 h-12 rounded-full mr-4" />
+                                <img src="https://www.shutterstock.com/image-photo/portrait-young-adult-indian-woman-260nw-2387090027.jpg" alt="Client" className="w-12 h-12 rounded-full mr-4" />
                                 <div>
                                     <h4 className="font-bold text-gray-800">Anjali Patel</h4>
                                     <p className="text-gray-500 text-sm">Small Business Owner</p>
