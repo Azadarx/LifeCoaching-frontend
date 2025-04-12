@@ -94,7 +94,7 @@ const HeroPage = () => {
 
         try {
             // Get the backend URL from environment variables or use a default
-            const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+            const backendUrl = import.meta.env.VITE_BACKEND_URL || 'https://lifecoaching-backend.onrender.com';
             const response = await fetch(`${backendUrl}/api/contact`, {
                 method: 'POST',
                 headers: {

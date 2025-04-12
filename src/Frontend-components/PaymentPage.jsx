@@ -5,7 +5,7 @@ import { useCart } from './CartContext';
 import { CreditCard, ArrowLeft } from 'lucide-react';
 
 // Get the backend URL from environment or use default
-const BACKEND_URL = import.meta.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+const BACKEND_URL = import.meta.env.REACT_APP_BACKEND_URL || 'https://lifecoaching-backend.onrender.com';
 
 const PaymentPage = () => {
     const location = useLocation();
