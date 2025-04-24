@@ -1,4 +1,5 @@
-// src/utils/paymentHandlers.js
+// 1. First, let's update the existing handlePaymentSuccess in paymentHandlers.js
+// This already exists but let's make sure it's used correctly
 
 /**
  * Sets the payment as successful and redirects to the success page
@@ -6,27 +7,17 @@
  * @param {object} userData - Optional user data to store
  */
 export const handlePaymentSuccess = (referenceId, userData = null) => {
-    // Store the payment success flag
-    sessionStorage.setItem('paymentSuccessful', 'true');
-    
-    // Store the reference ID
-    sessionStorage.setItem('referenceId', referenceId);
-    localStorage.setItem('referenceId', referenceId);
-    
-    // Store user data if provided
-    if (userData) {
-      sessionStorage.setItem('userData', JSON.stringify(userData));
-    }
-    
-    // Navigate to success page with reference ID
-    window.location.href = `/success?refId=${referenceId}`;
-  };
+  // Store the payment success flag
+  sessionStorage.setItem('paymentSuccessful', 'true');
   
-  /**
-   * Clears payment success data
-   */
-  export const clearPaymentData = () => {
-    sessionStorage.removeItem('paymentSuccessful');
-    sessionStorage.removeItem('referenceId');
-    // Don't remove from localStorage as it might be needed for order history
-  };
+  // Store the reference ID
+  sessionStorage.setItem('referenceId', referenceId);
+  
+  // Store user data if provided
+  if (userData) {
+    sessionStorage.setItem('userData', JSON.stringify(userData));
+  }
+  
+  // Navigate to success page with reference ID
+  window.location.href = `/success?refId=${referenceId}`;
+};

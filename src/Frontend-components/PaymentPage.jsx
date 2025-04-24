@@ -39,7 +39,7 @@ const PaymentPage = () => {
     const getCartItems = () => {
         return cartData.cartItems || items;
     };
-    
+
     const getSubtotal = () => {
         if (cartData.subtotal) return cartData.subtotal;
         return getCartItems().reduce((total, item) => {
@@ -207,8 +207,18 @@ const PaymentPage = () => {
                         })
                         .then(data => {
                             if (data.success) {
-                                clearCart(); // Clear the cart after successful payment
-                                navigate('/success', { state: { email: formData.email } });
+                                // Import the handler at the top of your file
+                                // import { handlePaymentSuccess } from '../utils/paymentHandlers';
+
+                                // Clear the cart
+                                clearCart();
+
+                                // Use the payment handler to set success state and redirect
+                                handlePaymentSuccess(response.razorpay_payment_id, {
+                                    email: formData.email,
+                                    name: formData.fullName,
+                                    items: getCartItems()
+                                });
                             } else {
                                 throw new Error('Payment verification failed');
                             }
