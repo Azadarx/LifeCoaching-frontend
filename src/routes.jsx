@@ -1,29 +1,25 @@
 import React from 'react';
-import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
-import { useAuth } from './AuthContext';
-import HeroPage from './Frontend-components/HeroPage';
+import { Routes, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import ServicesPage from './pages/ServicesPage';
+import SignInPage from './pages/SignInPage';
+import SignUpPage from './pages/SignUpPage';
 import PaymentPage from './Frontend-components/PaymentPage';
 import SuccessPage from './Frontend-components/SuccessPage';
-import SignIn from './auth/SignIn';
-import SignUp from './auth/SignUp';
 import ProtectedRoute from './Frontend-components/ProtectedRoute';
-
 
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<HeroPage />} />
-
-      <Route path="/signin" element={<SignIn />} />
-      <Route path="/signup" element={<SignUp />} />
-
+      <Route path="/" element={<HomePage />} />
+      <Route path="/services" element={<ServicesPage />} />
+      <Route path="/signin" element={<SignInPage />} />
+      <Route path="/signup" element={<SignUpPage />} />
+      <Route path="/payment" element={<PaymentPage />} />
+      <Route path="/success" element={<SuccessPage />} />
+      
       {/* Protected routes */}
       <Route element={<ProtectedRoute />}>
-        <Route path="/payment" element={<PaymentPage />} />
-        <Route
-          path="/success"
-          element={<ProtectedRoute element={<SuccessPage />} />}
-        />
       </Route>
     </Routes>
   );

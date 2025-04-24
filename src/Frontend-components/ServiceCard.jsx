@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCart } from './CartContext';
 
 const ServiceCard = ({ service }) => {
-  const { addItem, isSignedIn } = useCart();
+  const { addItem, items, isSignedIn } = useCart();
   const navigate = useNavigate();
   const isInCart = items.some(item => item.id === `service-${service.id}`);
 
