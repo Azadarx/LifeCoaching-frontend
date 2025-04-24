@@ -1,9 +1,9 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import ServicesPage from './pages/ServicesPage';
-import SignInPage from './pages/SignInPage';
-import SignUpPage from './pages/SignUpPage';
+import HomePage from './Frontend-components/HomePage';
+import ServicesPage from './Frontend-components/ServicesPage';
+import SignInPage from './Frontend-components/SignInPage';
+import SignUpPage from './Frontend-components/SignUpPage';
 import PaymentPage from './Frontend-components/PaymentPage';
 import SuccessPage from './Frontend-components/SuccessPage';
 import ProtectedRoute from './Frontend-components/ProtectedRoute';
