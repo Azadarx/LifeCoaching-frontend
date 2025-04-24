@@ -1,17 +1,17 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import HomePage from './Frontend-components/HomePage';
 import ServicesPage from './Frontend-components/ServicesPage';
 import SignInPage from './Frontend-components/SignInPage';
 import SignUpPage from './Frontend-components/SignUpPage';
 import PaymentPage from './Frontend-components/PaymentPage';
 import SuccessPage from './Frontend-components/SuccessPage';
 import ProtectedRoute from './Frontend-components/ProtectedRoute';
+import HeroPage from './Frontend-components/HeroPage';
 
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
+      <Route path="/" element={<HeroPage />} />
       <Route path="/services" element={<ServicesPage />} />
       <Route path="/signin" element={<SignInPage />} />
       <Route path="/signup" element={<SignUpPage />} />
