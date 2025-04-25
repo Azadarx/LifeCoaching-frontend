@@ -72,10 +72,7 @@ const UserDetails = () => {
             // Add CORS headers
             const uploadOptions = {
                 method: 'POST',
-                body: formData,
-                headers: {
-                    'Access-Control-Allow-Origin': '*'
-                }
+                body: formData
             };
             
             // Upload to Cloudinary
