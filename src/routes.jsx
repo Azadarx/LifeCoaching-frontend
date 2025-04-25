@@ -7,6 +7,7 @@ import SignUp from './auth/SignUp';
 import PaymentPage from './Frontend-components/PaymentPage';
 import SuccessPage from './Frontend-components/SuccessPage';
 import ProtectedRoute from './Frontend-components/ProtectedRoute';
+import UserDetails from './auth/UserDetails';
 
 const AppRoutes = () => {
   return (
