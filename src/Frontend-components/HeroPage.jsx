@@ -304,7 +304,6 @@ const HeroPage = () => {
                     {/* 👤 UserMenu & 🛒 Cart icon on small screens */}
                     <div className="md:hidden flex items-center gap-3">
                         <BookingCart className="text-zinc-700 hover:text-rose-600 transition duration-300" />
-                        <UserMenu />
 
                         {/* Hamburger menu */}
                         <button
@@ -326,6 +325,7 @@ const HeroPage = () => {
                                 ></path>
                             </svg>
                         </button>
+                        <UserMenu />
                     </div>
 
                 </div>
