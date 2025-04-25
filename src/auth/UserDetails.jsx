@@ -64,17 +64,26 @@ const UserDetails = () => {
             const formData = new FormData();
             formData.append('file', file);
             formData.append('upload_preset', cloudinaryConfig.uploadPreset);
-            formData.append('folder', `profile_photos/${currentUser.uid}`);
-            formData.append('public_id', `profile_${Date.now()}`);
             
-            // Upload to Cloudinary
-            const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudinaryConfig.cloudName}/image/upload`, {
+            // Use unique identifier for the file to avoid conflicts
+            const uniqueFilename = `profile_${currentUser.uid}_${Date.now()}`;
+            formData.append('public_id', uniqueFilename);
+            
+            // Add CORS headers
+            const uploadOptions = {
                 method: 'POST',
                 body: formData,
-            });
+                headers: {
+                    'Access-Control-Allow-Origin': '*'
+                }
+            };
+            
+            // Upload to Cloudinary
+            const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudinaryConfig.cloudName}/image/upload`, uploadOptions);
             
             if (!response.ok) {
-                throw new Error('Failed to upload image to Cloudinary');
+                const errorData = await response.json();
+                throw new Error(`Cloudinary error: ${errorData.error?.message || 'Failed to upload image'}`);
             }
             
             const data = await response.json();
@@ -89,7 +98,7 @@ const UserDetails = () => {
             setTimeout(() => setSuccess(false), 3000);
         } catch (err) {
             console.error('Error uploading photo:', err);
-            setError('Failed to upload profile photo. Please try again.');
+            setError(`Failed to upload profile photo: ${err.message}`);
         } finally {
             setPhotoUploading(false);
         }
