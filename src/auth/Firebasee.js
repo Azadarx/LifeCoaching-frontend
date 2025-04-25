@@ -1,7 +1,6 @@
 // Firebase.js - Initialize Firebase
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getStorage } from "firebase/storage";
 
 // Your web app's Firebase configuration
 // Replace with your actual Firebase project config
@@ -20,8 +19,5 @@ const app = initializeApp(firebaseConfig);
 
 // Initialize Firebase Authentication and get a reference to the service
 export const auth = getAuth(app);
-
-// Initialize Firebase Storage and get a reference to the service
-export const storage = getStorage(app);
 
 export default app;

@@ -41,7 +41,7 @@ const UserMenu = () => {
         return (
             <button
                 onClick={() => navigate('/signin')}
-                className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="flex items-center gap-2 px-4 py-2 bg-rose-600 text-white rounded-lg hover:bg-rose-700 transition-colors"
             >
                 <LogIn size={18} />
                 <span>Sign In</span>
@@ -64,7 +64,7 @@ const UserMenu = () => {
                 aria-haspopup="true"
             >
                 {currentUser?.photoURL ? (
-                    <div className="w-10 h-10 rounded-full overflow-hidden ring-2 ring-blue-100 hover:ring-blue-200 transition-all">
+                    <div className="w-10 h-10 rounded-full overflow-hidden ring-2 ring-rose-100 hover:ring-rose-200 transition-all">
                         <img 
                             src={currentUser.photoURL} 
                             alt={currentUser.displayName || "User"} 
@@ -72,7 +72,7 @@ const UserMenu = () => {
                         />
                     </div>
                 ) : (
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 text-white flex items-center justify-center font-medium shadow-md hover:shadow-lg transition-all">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-rose-500 to-red-600 text-white flex items-center justify-center font-medium shadow-md hover:shadow-lg transition-all">
                         {userInitials}
                     </div>
                 )}
@@ -93,7 +93,7 @@ const UserMenu = () => {
                             navigate('/user-details');
                         }}
                     >
-                        <User size={16} className="text-blue-600" />
+                        <User size={16} className="text-rose-600" />
                         <span>Your Details</span>
                     </button>
                     
@@ -101,7 +101,7 @@ const UserMenu = () => {
                         className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-3 transition-colors"
                         onClick={handleSignOut}
                     >
-                        <LogOut size={16} className="text-red-500" />
+                        <LogOut size={16} className="text-red-600" />
                         <span>Sign out</span>
                     </button>
                 </div>

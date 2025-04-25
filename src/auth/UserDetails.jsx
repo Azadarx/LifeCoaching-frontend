@@ -2,8 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
 import { updateProfile, updateEmail, updatePassword, EmailAuthProvider, reauthenticateWithCredential } from 'firebase/auth';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { storage } from '../auth/Firebasee';
+import { cloudinaryConfig } from '../cloudinary';
 import { Camera, Save, ArrowLeft, Loader, RefreshCw, User } from 'lucide-react';
 
 const UserDetails = () => {
@@ -61,14 +60,25 @@ const UserDetails = () => {
             setPhotoUploading(true);
             setError('');
             
-            // Create a reference to the storage location
-            const storageRef = ref(storage, `profile_photos/${currentUser.uid}/${Date.now()}_${file.name}`);
+            // Create a FormData object to upload to Cloudinary
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('upload_preset', cloudinaryConfig.uploadPreset);
+            formData.append('folder', `profile_photos/${currentUser.uid}`);
+            formData.append('public_id', `profile_${Date.now()}`);
             
-            // Upload the file
-            await uploadBytes(storageRef, file);
+            // Upload to Cloudinary
+            const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudinaryConfig.cloudName}/image/upload`, {
+                method: 'POST',
+                body: formData,
+            });
             
-            // Get the download URL
-            const downloadURL = await getDownloadURL(storageRef);
+            if (!response.ok) {
+                throw new Error('Failed to upload image to Cloudinary');
+            }
+            
+            const data = await response.json();
+            const downloadURL = data.secure_url;
             
             // Update user profile
             await updateProfile(currentUser, { photoURL: downloadURL });
@@ -158,7 +168,7 @@ const UserDetails = () => {
         <div className="max-w-2xl mx-auto px-4 py-8">
             <button 
                 onClick={() => navigate(-1)} 
-                className="flex items-center text-blue-600 mb-6 hover:text-blue-800 transition-colors"
+                className="flex items-center text-rose-600 mb-6 hover:text-rose-800 transition-colors"
             >
                 <ArrowLeft size={16} className="mr-1" /> Back
             </button>
@@ -177,7 +187,7 @@ const UserDetails = () => {
                                 />
                             </div>
                         ) : (
-                            <div className="w-24 h-24 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white text-2xl font-medium">
+                            <div className="w-24 h-24 rounded-full bg-gradient-to-br from-rose-500 to-red-600 flex items-center justify-center text-white text-2xl font-medium">
                                 {displayName ? displayName.charAt(0).toUpperCase() : 
                                  email ? email.charAt(0).toUpperCase() : <User size={48} />}
                             </div>
@@ -187,7 +197,7 @@ const UserDetails = () => {
                             type="button"
                             onClick={() => fileInputRef.current.click()}
                             disabled={photoUploading}
-                            className="absolute bottom-0 right-0 bg-blue-600 hover:bg-blue-700 text-white rounded-full p-2 shadow-md transition-colors"
+                            className="absolute bottom-0 right-0 bg-rose-600 hover:bg-rose-700 text-white rounded-full p-2 shadow-md transition-colors"
                             aria-label="Upload profile photo"
                         >
                             {photoUploading ? <Loader size={16} className="animate-spin" /> : <Camera size={16} />}
@@ -229,7 +239,7 @@ const UserDetails = () => {
                             type="text"
                             value={displayName}
                             onChange={(e) => setDisplayName(e.target.value)}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500"
                             placeholder="Your name"
                         />
                     </div>
@@ -243,7 +253,7 @@ const UserDetails = () => {
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500"
                             placeholder="email@example.com"
                         />
                     </div>
@@ -258,7 +268,7 @@ const UserDetails = () => {
                                 type="password"
                                 value={currentPassword}
                                 onChange={(e) => setCurrentPassword(e.target.value)}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500"
                                 placeholder="••••••••"
                             />
                         </div>
@@ -268,7 +278,7 @@ const UserDetails = () => {
                         <button
                             type="button"
                             onClick={() => setShowPasswordFields(true)}
-                            className="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center"
+                            className="text-rose-600 hover:text-rose-800 text-sm font-medium flex items-center"
                         >
                             <RefreshCw size={14} className="mr-1" /> Change password
                         </button>
@@ -283,7 +293,7 @@ const UserDetails = () => {
                                     type="password"
                                     value={newPassword}
                                     onChange={(e) => setNewPassword(e.target.value)}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500"
                                     placeholder="New password"
                                 />
                             </div>
@@ -297,7 +307,7 @@ const UserDetails = () => {
                                     type="password"
                                     value={confirmPassword}
                                     onChange={(e) => setConfirmPassword(e.target.value)}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500"
                                     placeholder="Confirm new password"
                                 />
                             </div>
@@ -316,7 +326,7 @@ const UserDetails = () => {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="w-full flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+                            className="w-full flex items-center justify-center px-4 py-2 bg-rose-600 text-white rounded-lg hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 transition-colors"
                         >
                             {loading ? (
                                 <>
