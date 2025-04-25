@@ -348,10 +348,11 @@ const PaymentPage = () => {
                         <span className="ml-2 text-zinc-700 hidden md:inline">| Life Coach</span>
                     </motion.div>
 
-                    <Link to="/"
-                        className="bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 shadow-md hover:shadow-lg flex items-center gap-2 cursor-pointer"
+                    <Link
+                        to="/"
+                        className="bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 shadow-md hover:shadow-lg flex items-center gap-1 whitespace-nowrap text-sm sm:text-base"
                     >
-                        <ArrowLeft size={16} />
+                        <ArrowLeft size={16} className="shrink-0" />
                         Back to Home
                     </Link>
                 </div>
