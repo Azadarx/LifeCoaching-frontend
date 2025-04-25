@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
 import { updateProfile, updateEmail, updatePassword, EmailAuthProvider, reauthenticateWithCredential } from 'firebase/auth';
-import { cloudinaryConfig } from '../cloudinary';
+import { cloudinaryConfig } from '../utils/cloudinary';
 import { Camera, Save, ArrowLeft, Loader, RefreshCw, User } from 'lucide-react';
 
 const UserDetails = () => {
