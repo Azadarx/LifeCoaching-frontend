@@ -26,8 +26,8 @@ const CartCheckout = () => {
         disabled={items.length === 0}
         className={`w-full py-3 px-4 rounded-lg font-medium transition-all duration-300 ${
           items.length === 0
-            ? 'bg-gray-300 text-gray-600 cursor-not-allowed'
-            : 'bg-indigo-600 hover:bg-indigo-700 text-white'
+            ? 'bg-gray-300 text-zinc-700 cursor-not-allowed'
+            : 'bg-amber-600 hover:bg-amber-700 text-white'
         }`}
       >
         Proceed to Checkout

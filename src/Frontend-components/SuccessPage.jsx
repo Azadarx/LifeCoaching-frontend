@@ -88,7 +88,7 @@ const SuccessPage = () => {
                     className="max-w-3xl mx-auto"
                 >
                     <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-                        <div className="bg-indigo-600 text-white p-8 text-center">
+                        <div className="bg-amber-600 text-white p-8 text-center">
                             <motion.div
                                 initial={{ scale: 0 }}
                                 animate={{ scale: 1 }}
@@ -112,11 +112,11 @@ const SuccessPage = () => {
                                 </motion.div>
 
                                 <motion.div variants={fadeInUp} className="bg-indigo-50 p-6 rounded-lg">
-                                    <h3 className="font-medium text-gray-800 mb-4 text-lg">What happens next?</h3>
+                                    <h3 className="font-medium text-neutral-800 mb-4 text-lg">What happens next?</h3>
                                     <ul className="space-y-4">
                                         <li className="flex items-start">
                                             <div className="bg-indigo-100 p-2 rounded-full mr-3 mt-1">
-                                                <Calendar size={18} className="text-indigo-600" />
+                                                <Calendar size={18} className="border-rose-600" />
                                             </div>
                                             <div>
                                                 <p className="text-gray-700">Mrs. Shereen will contact you within 24 hours to schedule your session.</p>
@@ -124,7 +124,7 @@ const SuccessPage = () => {
                                         </li>
                                         <li className="flex items-start">
                                             <div className="bg-indigo-100 p-2 rounded-full mr-3 mt-1">
-                                                <svg className="w-4.5 h-4.5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <svg className="w-4.5 h-4.5 border-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                                                 </svg>
                                             </div>
@@ -140,7 +140,7 @@ const SuccessPage = () => {
                                         <motion.button
                                             whileHover={{ scale: 1.02 }}
                                             whileTap={{ scale: 0.98 }}
-                                            className="w-full py-3 px-4 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-lg font-medium flex items-center justify-center gap-2 transition-all"
+                                            className="w-full py-3 px-4 bg-gray-100 hover:bg-gray-200 text-neutral-800 rounded-lg font-medium flex items-center justify-center gap-2 transition-all"
                                         >
                                             <Home size={18} />
                                             <span>Return Home</span>

@@ -54,8 +54,8 @@ const SignIn = () => {
         className="bg-white p-8 rounded-xl shadow-lg max-w-md w-full"
       >
         <div className="text-center mb-8">
-          <h1 className="text-2xl font-bold text-gray-800">Welcome Back</h1>
-          <p className="text-gray-600 mt-2">Sign in to your account</p>
+          <h1 className="text-2xl font-bold text-neutral-800">Welcome Back</h1>
+          <p className="text-zinc-700 mt-2">Sign in to your account</p>
         </div>
 
         {error && (
@@ -105,7 +105,7 @@ const SignIn = () => {
             whileTap={{ scale: 0.98 }}
             type="submit"
             disabled={loading}
-            className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-lg font-medium flex items-center justify-center gap-2"
+            className="w-full bg-amber-600 hover:bg-amber-700 text-white py-2 px-4 rounded-lg font-medium flex items-center justify-center gap-2"
           >
             {loading ? (
               <div className="w-5 h-5 border-t-2 border-b-2 border-white rounded-full animate-spin"></div>
@@ -119,9 +119,9 @@ const SignIn = () => {
         </form>
 
         <div className="mt-6 text-center">
-          <p className="text-gray-600">
+          <p className="text-zinc-700">
             Don't have an account? {' '}
-            <Link to="/signup" className="text-indigo-600 hover:text-indigo-800 font-medium">
+            <Link to="/signup" className="border-rose-600 hover:text-indigo-800 font-medium">
               Sign Up
             </Link>
           </p>

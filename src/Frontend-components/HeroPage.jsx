@@ -258,9 +258,9 @@ const HeroPage = () => {
                         animate={{ opacity: 1, x: 0 }}
                         className="flex items-center"
                     >
-                        <span className="text-2xl font-bold text-teal-600 capitalize">INSPIRING SHEREEN
+                        <span className="text-2xl font-bold text-rose-600 capitalize">INSPIRING SHEREEN
                         </span>
-                        <span className="ml-2 text-gray-600 hidden md:inline">| Life Coach</span>
+                        <span className="ml-2 text-zinc-700 hidden md:inline">| Life Coach</span>
                     </motion.div>
 
                     <div className="hidden md:flex space-x-6 items-center">
@@ -269,8 +269,8 @@ const HeroPage = () => {
                                 key={item}
                                 onClick={() => scrollToSection(item)}
                                 className={`${activeSection === item
-                                    ? 'text-teal-600 font-medium border-b-2 border-teal-500'
-                                    : 'text-gray-600 hover:text-teal-600'
+                                    ? 'text-rose-600 font-medium border-b-2 border-teal-500'
+                                    : 'text-zinc-700 hover:text-rose-600'
                                     } px-1 py-1 transition-all duration-300`}
                             >
                                 {item.charAt(0).toUpperCase() + item.slice(1)}
@@ -278,13 +278,13 @@ const HeroPage = () => {
                         ))}
 
                         {/* 🛒 Booking Cart */}
-                        <BookingCart className="text-gray-600 hover:text-teal-600 transition duration-300" />
+                        <BookingCart className="text-zinc-700 hover:text-rose-600 transition duration-300" />
 
                         {/* User Menu or Enroll Now depending on auth state */}
                         <div className="flex items-center gap-4">
                             <button
                                 onClick={() => handleEnrollClick(99)}
-                                className="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 shadow-md hover:shadow-lg"
+                                className="bg-rose-600 hover:bg-rose-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 shadow-md hover:shadow-lg"
                             >
                                 Enroll Now
                             </button>
@@ -299,13 +299,13 @@ const HeroPage = () => {
                     {/* Mobile menu button */}
                     {/* 👤 UserMenu & 🛒 Cart icon on small screens */}
                     <div className="md:hidden flex items-center gap-3">
-                        <BookingCart className="text-gray-600 hover:text-teal-600 transition duration-300" />
+                        <BookingCart className="text-zinc-700 hover:text-rose-600 transition duration-300" />
                         <UserMenu />
 
                         {/* Hamburger menu */}
                         <button
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                            className="text-gray-600 focus:outline-none"
+                            className="text-zinc-700 focus:outline-none"
                         >
                             <svg
                                 className="w-6 h-6"
@@ -339,8 +339,8 @@ const HeroPage = () => {
                                     key={item}
                                     onClick={() => scrollToSection(item)}
                                     className={`${activeSection === item
-                                        ? 'text-teal-600 font-medium'
-                                        : 'text-gray-600'
+                                        ? 'text-rose-600 font-medium'
+                                        : 'text-zinc-700'
                                         } block w-full text-left py-3 border-b border-gray-100`}
                                 >
                                     {item.charAt(0).toUpperCase() + item.slice(1)}
@@ -348,7 +348,7 @@ const HeroPage = () => {
                             ))}
                             <button
                                 onClick={() => handleEnrollClick(99)}
-                                className="block w-full text-center bg-teal-600 hover:bg-teal-700 text-white py-3 mt-3 rounded-lg font-medium"
+                                className="block w-full text-center bg-rose-600 hover:bg-rose-700 text-white py-3 mt-3 rounded-lg font-medium"
                             >
                                 Enroll Now
                             </button>
@@ -368,7 +368,7 @@ const HeroPage = () => {
                 {/* ✨ Enroll Button */}
                 <button
                     onClick={() => handleEnrollClick(99)}
-                    className="group bg-gradient-to-r from-teal-500 to-emerald-500 text-white px-6 py-4 rounded-2xl font-medium flex items-center gap-3 shadow-lg hover:shadow-teal-200/50 transition-all duration-300"
+                    className="group bg-gradient-to-r from-rose-500 to-amber-400 text-white px-6 py-4 rounded-2xl font-medium flex items-center gap-3 shadow-lg hover:shadow-teal-200/50 transition-all duration-300"
                 >
                     <div className="flex justify-center items-center w-10 h-10 bg-white/20 rounded-full backdrop-blur-sm transition-transform group-hover:rotate-12">
                         <span className="text-2xl">✨</span>
@@ -409,14 +409,14 @@ const HeroPage = () => {
                             variants={fadeIn}
                         >
                             <motion.h1
-                                className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 leading-tight"
+                                className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-800 leading-tight"
                                 variants={fadeIn}
                             >
-                                Shaping Lives with <span className="text-teal-600">Holistic Success
+                                Shaping Lives with <span className="text-rose-600">Holistic Success
                                 </span>
                             </motion.h1>
                             <motion.p
-                                className="mt-6 text-lg text-gray-600 md:max-w-md"
+                                className="mt-6 text-lg text-zinc-700 md:max-w-md"
                                 variants={fadeIn}
                             >
                                 Discover your potential and achieve your dreams with Inspiring Shereen
@@ -429,13 +429,13 @@ const HeroPage = () => {
                             >
                                 <button
                                     onClick={() => handleEnrollClick(99)}
-                                    className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3 rounded-lg font-medium shadow-md hover:shadow-lg transition-all duration-300"
+                                    className="bg-rose-600 hover:bg-rose-700 text-white px-8 py-3 rounded-lg font-medium shadow-md hover:shadow-lg transition-all duration-300"
                                 >
                                     Start Your Journey
                                 </button>
                                 <button
                                     onClick={() => scrollToSection('services')}
-                                    className="border-2 border-teal-600 text-teal-600 hover:bg-teal-50 px-8 py-3 rounded-lg font-medium transition-all duration-300"
+                                    className="border-2 border-rose-600 text-rose-600 hover:bg-rose-50 px-8 py-3 rounded-lg font-medium transition-all duration-300"
                                 >
                                     Explore Services
                                 </button>
@@ -472,18 +472,18 @@ const HeroPage = () => {
                     >
                         <motion.h2
                             variants={fadeIn}
-                            className="text-3xl md:text-4xl font-bold text-gray-800 mb-6"
+                            className="text-3xl md:text-4xl font-bold text-neutral-800 mb-6"
                         >
-                            About <span className="text-teal-600">Inspiring Shereen
+                            About <span className="text-rose-600">Inspiring Shereen
                             </span>
                         </motion.h2>
                         <motion.div
                             variants={fadeIn}
-                            className="w-20 h-1 bg-teal-500 mx-auto mb-8"
+                            className="w-20 h-1 bg-rose-500 mx-auto mb-8"
                         ></motion.div>
                         <motion.p
                             variants={fadeIn}
-                            className="text-lg text-gray-600 mb-8"
+                            className="text-lg text-zinc-700 mb-8"
                         >
                             With over 15 years of experience in life coaching, Inspiring Shereen
                             has helped thousands
@@ -495,20 +495,20 @@ const HeroPage = () => {
                             variants={fadeIn}
                             className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12"
                         >
-                            <div className="bg-teal-50 p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                            <div className="bg-rose-50 p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
                                 <div className="text-3xl mb-4">🎓</div>
                                 <h3 className="text-xl font-semibold mb-2 text-teal-700">Certified Coach</h3>
-                                <p className="text-gray-600">International Coaching Federation certified with advanced training</p>
+                                <p className="text-zinc-700">International Coaching Federation certified with advanced training</p>
                             </div>
-                            <div className="bg-teal-50 p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                            <div className="bg-rose-50 p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
                                 <div className="text-3xl mb-4">💼</div>
                                 <h3 className="text-xl font-semibold mb-2 text-teal-700">15+ Years Experience</h3>
-                                <p className="text-gray-600">Thousands of successful client transformations</p>
+                                <p className="text-zinc-700">Thousands of successful client transformations</p>
                             </div>
-                            <div className="bg-teal-50 p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                            <div className="bg-rose-50 p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
                                 <div className="text-3xl mb-4">🌟</div>
                                 <h3 className="text-xl font-semibold mb-2 text-teal-700">Personalized Approach</h3>
-                                <p className="text-gray-600">Customized strategies for your unique journey</p>
+                                <p className="text-zinc-700">Customized strategies for your unique journey</p>
                             </div>
                         </motion.div>
                     </motion.div>
@@ -527,17 +527,17 @@ const HeroPage = () => {
                     >
                         <motion.h2
                             variants={fadeIn}
-                            className="text-3xl md:text-4xl font-bold text-gray-800 mb-6"
+                            className="text-3xl md:text-4xl font-bold text-neutral-800 mb-6"
                         >
-                            <span className="text-teal-600">Services</span> Designed For You
+                            <span className="text-rose-600">Services</span> Designed For You
                         </motion.h2>
                         <motion.div
                             variants={fadeIn}
-                            className="w-20 h-1 bg-teal-500 mx-auto mb-8"
+                            className="w-20 h-1 bg-rose-500 mx-auto mb-8"
                         ></motion.div>
                         <motion.p
                             variants={fadeIn}
-                            className="text-lg text-gray-600 max-w-2xl mx-auto"
+                            className="text-lg text-zinc-700 max-w-2xl mx-auto"
                         >
                             My coaching services are designed to address every aspect of personal growth
                             and development. Choose the path that resonates most with your current needs.
@@ -562,11 +562,11 @@ const HeroPage = () => {
                                 className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
                             >
                                 <div className="p-6">
-                                    <div className="text-4xl mb-4 bg-teal-50 w-16 h-16 flex items-center justify-center rounded-full mx-auto">{service.icon}</div>
-                                    <h3 className="text-xl font-bold mb-3 text-gray-800 text-center">{service.title}</h3>
-                                    <p className="text-gray-600 mb-6 text-center">{service.description}</p>
+                                    <div className="text-4xl mb-4 bg-rose-50 w-16 h-16 flex items-center justify-center rounded-full mx-auto">{service.icon}</div>
+                                    <h3 className="text-xl font-bold mb-3 text-neutral-800 text-center">{service.title}</h3>
+                                    <p className="text-zinc-700 mb-6 text-center">{service.description}</p>
                                     <div className="flex justify-between items-center">
-                                        <span className="text-teal-600 font-bold text-xl">₹{service.price}</span>
+                                        <span className="text-rose-600 font-bold text-xl">₹{service.price}</span>
                                         <button
                                             onClick={() =>
                                                 addItem({
@@ -577,7 +577,7 @@ const HeroPage = () => {
                                                     icon: service.icon
                                                 })
                                             }
-                                            className="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300"
+                                            className="bg-rose-600 hover:bg-rose-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300"
                                         >
                                             Add to Cart
                                         </button>
@@ -601,17 +601,17 @@ const HeroPage = () => {
                     >
                         <motion.h2
                             variants={fadeIn}
-                            className="text-3xl md:text-4xl font-bold text-gray-800 mb-6"
+                            className="text-3xl md:text-4xl font-bold text-neutral-800 mb-6"
                         >
-                            Live <span className="text-teal-600">Webinars</span> & Workshops
+                            Live <span className="text-rose-600">Webinars</span> & Workshops
                         </motion.h2>
                         <motion.div
                             variants={fadeIn}
-                            className="w-20 h-1 bg-teal-500 mx-auto mb-8"
+                            className="w-20 h-1 bg-rose-500 mx-auto mb-8"
                         ></motion.div>
                         <motion.p
                             variants={fadeIn}
-                            className="text-lg text-gray-600 max-w-2xl mx-auto"
+                            className="text-lg text-zinc-700 max-w-2xl mx-auto"
                         >
                             Join our live interactive webinars to learn, grow, and connect with a community
                             of like-minded individuals on a similar journey of self-improvement.
@@ -641,10 +641,10 @@ const HeroPage = () => {
                                         <div className="text-4xl mb-4 bg-white w-16 h-16 flex items-center justify-center rounded-full mx-auto shadow-sm">
                                             {webinar.icon}
                                         </div>
-                                        <h3 className="text-xl font-bold mb-4 text-gray-800 text-center">{webinar.title}</h3>
-                                        <p className="text-gray-600 mb-6 text-center">{webinar.description}</p>
+                                        <h3 className="text-xl font-bold mb-4 text-neutral-800 text-center">{webinar.title}</h3>
+                                        <p className="text-zinc-700 mb-6 text-center">{webinar.description}</p>
                                         <div className="flex justify-between items-center">
-                                            <span className="text-teal-600 font-bold text-xl">₹{webinar.price}</span>
+                                            <span className="text-rose-600 font-bold text-xl">₹{webinar.price}</span>
                                             <button
                                                 onClick={() =>
                                                     !isInCart &&
@@ -659,7 +659,7 @@ const HeroPage = () => {
                                                 disabled={isInCart}
                                                 className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${isInCart
                                                         ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                                                        : 'bg-teal-600 hover:bg-teal-700 text-white'
+                                                        : 'bg-rose-600 hover:bg-rose-700 text-white'
                                                     }`}
                                             >
                                                 {isInCart ? 'Added' : 'Add to Cart'}
@@ -689,7 +689,7 @@ const HeroPage = () => {
                                     image: "/api/placeholder/100/100"
                                 })
                             }
-                            className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3 rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300 inline-block"
+                            className="bg-rose-600 hover:bg-rose-700 text-white px-8 py-3 rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300 inline-block"
                         >
                             Get Access to All Webinars (₹149)
                         </button>
@@ -709,13 +709,13 @@ const HeroPage = () => {
                     >
                         <motion.h2
                             variants={fadeIn}
-                            className="text-3xl md:text-4xl font-bold text-gray-800 mb-6"
+                            className="text-3xl md:text-4xl font-bold text-neutral-800 mb-6"
                         >
-                            Success <span className="text-teal-600">Stories</span>
+                            Success <span className="text-rose-600">Stories</span>
                         </motion.h2>
                         <motion.div
                             variants={fadeIn}
-                            className="w-20 h-1 bg-teal-500 mx-auto mb-8"
+                            className="w-20 h-1 bg-rose-500 mx-auto mb-8"
                         ></motion.div>
                     </motion.div>
 
@@ -733,11 +733,11 @@ const HeroPage = () => {
                             <div className="flex items-center mb-4">
                                 <img src="https://media.istockphoto.com/id/1987655119/photo/smiling-young-businesswoman-standing-in-the-corridor-of-an-office.jpg?s=612x612&w=0&k=20&c=5N_IVGYsXoyj-H9vEiZUCLqbmmineaemQsKt2NTXGms=" alt="Client" className="w-12 h-12 rounded-full mr-4" />
                                 <div>
-                                    <h4 className="font-bold text-gray-800">Priya Sharma</h4>
+                                    <h4 className="font-bold text-neutral-800">Priya Sharma</h4>
                                     <p className="text-gray-500 text-sm">Marketing Professional</p>
                                 </div>
                             </div>
-                            <p className="text-gray-600 italic">
+                            <p className="text-zinc-700 italic">
                                 "Inspiring Shereen
                                 helped me identify the mental blocks that were holding me back in my career.
                                 Within 3 months of coaching, I received a promotion I had been working toward for years!"
@@ -752,11 +752,11 @@ const HeroPage = () => {
                             <div className="flex items-center mb-4">
                                 <img src="https://static.vecteezy.com/system/resources/previews/049/174/246/non_2x/a-smiling-young-indian-man-with-formal-shirts-outdoors-photo.jpg" alt="Client" className="w-12 h-12 rounded-full mr-4" />
                                 <div>
-                                    <h4 className="font-bold text-gray-800">Rahul Mehta</h4>
+                                    <h4 className="font-bold text-neutral-800">Rahul Mehta</h4>
                                     <p className="text-gray-500 text-sm">Software Engineer</p>
                                 </div>
                             </div>
-                            <p className="text-gray-600 italic">
+                            <p className="text-zinc-700 italic">
                                 "The goal-setting framework Inspiring Shereen
                                 taught me completely changed how I approach both work and personal goals.
                                 I've accomplished more in the past 6 months than in the previous 2 years."
@@ -771,11 +771,11 @@ const HeroPage = () => {
                             <div className="flex items-center mb-4">
                                 <img src="https://www.shutterstock.com/image-photo/portrait-young-adult-indian-woman-260nw-2387090027.jpg" alt="Client" className="w-12 h-12 rounded-full mr-4" />
                                 <div>
-                                    <h4 className="font-bold text-gray-800">Anjali Patel</h4>
+                                    <h4 className="font-bold text-neutral-800">Anjali Patel</h4>
                                     <p className="text-gray-500 text-sm">Small Business Owner</p>
                                 </div>
                             </div>
-                            <p className="text-gray-600 italic">
+                            <p className="text-zinc-700 italic">
                                 "When I was on the verge of giving up my business, Inspiring Shereen helped me reconnect with my purpose and
                                 passion. Her coaching not only saved my business but helped it flourish beyond my expectations."
                             </p>
@@ -798,17 +798,17 @@ const HeroPage = () => {
                     >
                         <motion.h2
                             variants={fadeIn}
-                            className="text-3xl md:text-4xl font-bold text-gray-800 mb-6"
+                            className="text-3xl md:text-4xl font-bold text-neutral-800 mb-6"
                         >
-                            Get in <span className="text-teal-600">Touch</span>
+                            Get in <span className="text-rose-600">Touch</span>
                         </motion.h2>
                         <motion.div
                             variants={fadeIn}
-                            className="w-20 h-1 bg-teal-500 mx-auto mb-8"
+                            className="w-20 h-1 bg-rose-500 mx-auto mb-8"
                         ></motion.div>
                         <motion.p
                             variants={fadeIn}
-                            className="text-lg text-gray-600 max-w-2xl mx-auto"
+                            className="text-lg text-zinc-700 max-w-2xl mx-auto"
                         >
                             Have questions or ready to start your journey? Reach out to me directly.
                             I'm here to help you achieve your goals and transform your life.
@@ -825,22 +825,22 @@ const HeroPage = () => {
                                     variants={fadeIn}
                                     className="bg-gray-50 p-8 rounded-xl h-full"
                                 >
-                                    <h3 className="text-2xl font-bold text-gray-800 mb-6">Contact Information</h3>
+                                    <h3 className="text-2xl font-bold text-neutral-800 mb-6">Contact Information</h3>
 
                                     <div className="flex items-center mb-6">
-                                        <div className="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mr-4 text-teal-600">
+                                        <div className="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mr-4 text-rose-600">
                                             <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
                                             </svg>
                                         </div>
                                         <div>
                                             <p className="text-gray-500 text-sm">Phone</p>
-                                            <a href="tel:+919951611674" className="text-gray-800 font-medium hover:text-teal-600 transition-colors">+91 99516 11674</a>
+                                            <a href="tel:+919951611674" className="text-neutral-800 font-medium hover:text-rose-600 transition-colors">+91 99516 11674</a>
                                         </div>
                                     </div>
 
                                     <div className="flex items-center mb-6">
-                                        <div className="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mr-4 text-teal-600">
+                                        <div className="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mr-4 text-rose-600">
                                             <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
                                                 <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
@@ -848,24 +848,24 @@ const HeroPage = () => {
                                         </div>
                                         <div>
                                             <p className="text-gray-500 text-sm">Email</p>
-                                            <a href="mailto:phonicswithshereen@gmail.com" className="text-gray-800 font-medium hover:text-teal-600 transition-colors">phonicswithshereen@gmail.com</a>
+                                            <a href="mailto:phonicswithshereen@gmail.com" className="text-neutral-800 font-medium hover:text-rose-600 transition-colors">phonicswithshereen@gmail.com</a>
                                         </div>
                                     </div>
 
                                     <div className="flex items-center">
-                                        <div className="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mr-4 text-teal-600">
+                                        <div className="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mr-4 text-rose-600">
                                             <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                                 <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"></path>
                                             </svg>
                                         </div>
                                         <div>
                                             <p className="text-gray-500 text-sm">Location</p>
-                                            <p className="text-gray-800 font-medium">Available for online sessions worldwide</p>
+                                            <p className="text-neutral-800 font-medium">Available for online sessions worldwide</p>
                                         </div>
                                     </div>
 
                                     <div className="mt-8">
-                                        <h4 className="text-lg font-bold text-gray-800 mb-4">Follow Me</h4>
+                                        <h4 className="text-lg font-bold text-neutral-800 mb-4">Follow Me</h4>
                                         <div className="flex space-x-4">
                                             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-pink-500 text-white rounded-full flex items-center justify-center hover:bg-pink-600 transition-colors">
                                                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -896,7 +896,7 @@ const HeroPage = () => {
                                     className="bg-white p-8 rounded-xl shadow-md"
                                     onSubmit={handleSubmit}
                                 >
-                                    <h3 className="text-2xl font-bold text-gray-800 mb-6">Send a Message</h3>
+                                    <h3 className="text-2xl font-bold text-neutral-800 mb-6">Send a Message</h3>
 
                                     {submitStatus && (
                                         <div className={`mb-6 p-4 rounded-lg ${submitStatus.type === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
@@ -960,7 +960,7 @@ const HeroPage = () => {
                                     <button
                                         type="submit"
                                         disabled={isSubmitting}
-                                        className={`w-full bg-teal-600 hover:bg-teal-700 text-white py-3 rounded-lg font-medium transition-all duration-300 shadow-md hover:shadow-lg ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
+                                        className={`w-full bg-rose-600 hover:bg-rose-700 text-white py-3 rounded-lg font-medium transition-all duration-300 shadow-md hover:shadow-lg ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
                                             }`}
                                     >
                                         {isSubmitting ? 'Sending...' : 'Send Message'}
@@ -984,13 +984,13 @@ const HeroPage = () => {
                     >
                         <motion.h2
                             variants={fadeIn}
-                            className="text-3xl md:text-4xl font-bold text-gray-800 mb-6"
+                            className="text-3xl md:text-4xl font-bold text-neutral-800 mb-6"
                         >
-                            Frequently <span className="text-teal-600">Asked Questions</span>
+                            Frequently <span className="text-rose-600">Asked Questions</span>
                         </motion.h2>
                         <motion.div
                             variants={fadeIn}
-                            className="w-20 h-1 bg-teal-500 mx-auto mb-8"
+                            className="w-20 h-1 bg-rose-500 mx-auto mb-8"
                         ></motion.div>
                     </motion.div>
 
@@ -1006,8 +1006,8 @@ const HeroPage = () => {
                                 variants={fadeIn}
                                 className="bg-white p-6 rounded-xl shadow-md"
                             >
-                                <h3 className="text-xl font-bold text-gray-800 mb-2">How are coaching sessions conducted?</h3>
-                                <p className="text-gray-600">
+                                <h3 className="text-xl font-bold text-neutral-800 mb-2">How are coaching sessions conducted?</h3>
+                                <p className="text-zinc-700">
                                     All coaching sessions are conducted online via Zoom or Google Meet. This allows for flexibility
                                     and accessibility regardless of your location. Sessions typically last 60 minutes.
                                 </p>
@@ -1017,8 +1017,8 @@ const HeroPage = () => {
                                 variants={fadeIn}
                                 className="bg-white p-6 rounded-xl shadow-md"
                             >
-                                <h3 className="text-xl font-bold text-gray-800 mb-2">How many sessions will I need?</h3>
-                                <p className="text-gray-600">
+                                <h3 className="text-xl font-bold text-neutral-800 mb-2">How many sessions will I need?</h3>
+                                <p className="text-zinc-700">
                                     This varies depending on your goals and circumstances. Most clients see significant progress
                                     within 6-8 sessions. We'll discuss your specific needs during our initial consultation.
                                 </p>
@@ -1028,8 +1028,8 @@ const HeroPage = () => {
                                 variants={fadeIn}
                                 className="bg-white p-6 rounded-xl shadow-md"
                             >
-                                <h3 className="text-xl font-bold text-gray-800 mb-2">What's your cancellation policy?</h3>
-                                <p className="text-gray-600">
+                                <h3 className="text-xl font-bold text-neutral-800 mb-2">What's your cancellation policy?</h3>
+                                <p className="text-zinc-700">
                                     I understand that life happens. Sessions can be rescheduled with at least 24 hours notice
                                     at no additional cost. Cancellations with less than 24 hours notice may incur a fee.
                                 </p>
@@ -1039,8 +1039,8 @@ const HeroPage = () => {
                                 variants={fadeIn}
                                 className="bg-white p-6 rounded-xl shadow-md"
                             >
-                                <h3 className="text-xl font-bold text-gray-800 mb-2">Are coaching sessions confidential?</h3>
-                                <p className="text-gray-600">
+                                <h3 className="text-xl font-bold text-neutral-800 mb-2">Are coaching sessions confidential?</h3>
+                                <p className="text-zinc-700">
                                     Absolutely. I maintain strict confidentiality about all aspects of our coaching relationship.
                                     Your privacy and trust are paramount to effective coaching.
                                 </p>

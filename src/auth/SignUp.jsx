@@ -63,8 +63,8 @@ const SignUp = () => {
         className="bg-white p-8 rounded-xl shadow-lg max-w-md w-full"
       >
         <div className="text-center mb-8">
-          <h1 className="text-2xl font-bold text-gray-800">Create an Account</h1>
-          <p className="text-gray-600 mt-2">Sign up to get started</p>
+          <h1 className="text-2xl font-bold text-neutral-800">Create an Account</h1>
+          <p className="text-zinc-700 mt-2">Sign up to get started</p>
         </div>
 
         {error && (
@@ -142,7 +142,7 @@ const SignUp = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200 flex items-center justify-center gap-2"
+            className="w-full bg-amber-600 hover:bg-amber-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200 flex items-center justify-center gap-2"
           >
             {loading ? (
               <>
@@ -159,9 +159,9 @@ const SignUp = () => {
         </form>
         
         <div className="mt-6 text-center">
-          <p className="text-gray-600">
+          <p className="text-zinc-700">
             Already have an account?{' '}
-            <Link to="/signin" className="text-indigo-600 hover:text-indigo-800 font-medium">
+            <Link to="/signin" className="border-rose-600 hover:text-indigo-800 font-medium">
               Sign In
             </Link>
           </p>

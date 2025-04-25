@@ -100,7 +100,7 @@ const BookingCart = ({ className = '' }) => {
               ) : !isSignedIn ? (
                 <div className="flex flex-col items-center justify-center h-full text-center py-12">
                   <LogIn size={48} className="mb-4 text-blue-600" />
-                  <p className="mb-6 text-gray-600">Please sign in to view your cart</p>
+                  <p className="mb-6 text-zinc-700">Please sign in to view your cart</p>
                   <motion.button
                     className="bg-blue-600 text-white py-3 px-6 rounded-lg font-medium flex items-center justify-center gap-2"
                     whileHover={{ scale: 1.02 }}
@@ -158,11 +158,11 @@ const BookingCart = ({ className = '' }) => {
             {isSignedIn && items.length > 0 && (
               <div className="p-4 bg-white border-t border-gray-200">
                 <div className="flex justify-between mb-2">
-                  <span className="text-gray-600">Subtotal</span>
+                  <span className="text-zinc-700">Subtotal</span>
                   <span>₹{getTotal()}</span>
                 </div>
                 <div className="flex justify-between mb-4">
-                  <span className="text-gray-600">Tax</span>
+                  <span className="text-zinc-700">Tax</span>
                   <span>₹{(getTotal() * 0.1).toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between font-semibold text-lg mb-4">

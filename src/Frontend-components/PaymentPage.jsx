@@ -325,7 +325,7 @@ const PaymentPage = () => {
                     <p className="text-gray-700 mb-6">
                         We're having trouble loading our payment system. Please try again later or contact support.
                     </p>
-                    <Link to="/" className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 shadow-md hover:shadow-lg inline-flex items-center gap-2">
+                    <Link to="/" className="bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 shadow-md hover:shadow-lg inline-flex items-center gap-2">
                         <ArrowLeft size={16} />
                         Return to Home
                     </Link>
@@ -344,12 +344,12 @@ const PaymentPage = () => {
                         animate={{ opacity: 1, x: 0 }}
                         className="flex items-center"
                     >
-                        <Link to="/" className="text-2xl font-bold text-indigo-600">INSPIRING SHEREEN</Link>
-                        <span className="ml-2 text-gray-600 hidden md:inline">| Life Coach</span>
+                        <Link to="/" className="text-2xl font-bold border-rose-600">INSPIRING SHEREEN</Link>
+                        <span className="ml-2 text-zinc-700 hidden md:inline">| Life Coach</span>
                     </motion.div>
 
                     <Link to="/"
-                        className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 shadow-md hover:shadow-lg flex items-center gap-2 cursor-pointer"
+                        className="bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 shadow-md hover:shadow-lg flex items-center gap-2 cursor-pointer"
                     >
                         <ArrowLeft size={16} />
                         Back to Home
@@ -365,8 +365,8 @@ const PaymentPage = () => {
                     variants={fadeIn}
                     className="text-center mb-12"
                 >
-                    <h1 className="text-4xl font-bold text-gray-800 mb-2">Complete Your Payment</h1>
-                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">Secure checkout for your selected coaching services</p>
+                    <h1 className="text-4xl font-bold text-neutral-800 mb-2">Complete Your Payment</h1>
+                    <p className="text-lg text-zinc-700 max-w-2xl mx-auto">Secure checkout for your selected coaching services</p>
                 </motion.div>
 
                 {/* Payment Form - Full Width */}
@@ -376,7 +376,7 @@ const PaymentPage = () => {
                     variants={fadeIn}
                     className="max-w-3xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden"
                 >
-                    <div className="bg-indigo-600 text-white p-6">
+                    <div className="bg-amber-600 text-white p-6">
                         <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-2">
                                 <CreditCard size={24} />
@@ -448,13 +448,13 @@ const PaymentPage = () => {
                             </div>
 
                             <div className="bg-indigo-50 p-6 rounded-lg">
-                                <h3 className="font-semibold text-gray-800 mb-4">Order Summary</h3>
+                                <h3 className="font-semibold text-neutral-800 mb-4">Order Summary</h3>
                                 {getCartItems().map((item) => (
                                     <div key={item.id} className="flex justify-between mb-3 pb-3 border-b border-indigo-100">
                                         <div>
                                             <h4 className="font-medium">{item.name}</h4>
-                                            {item.quantity && <p className="text-sm text-gray-600">Quantity: {item.quantity}</p>}
-                                            {item.nights && <p className="text-sm text-gray-600">Nights: {item.nights}</p>}
+                                            {item.quantity && <p className="text-sm text-zinc-700">Quantity: {item.quantity}</p>}
+                                            {item.nights && <p className="text-sm text-zinc-700">Nights: {item.nights}</p>}
                                         </div>
                                         <span className="font-medium">₹{item.price.toFixed(2)}</span>
                                     </div>
@@ -477,7 +477,7 @@ const PaymentPage = () => {
                                 <div className="flex justify-center space-x-6 mb-4">
                                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0tubqqOWuY630wllhqVlo4_NS1aNna-mBzA&s" alt="Visa" className="h-12 object-contain" />
                                 </div>
-                                <div className="text-sm text-gray-600 text-center">
+                                <div className="text-sm text-zinc-700 text-center">
                                     <p>Your payment information is encrypted and secure</p>
                                 </div>
                             </div>
@@ -487,7 +487,7 @@ const PaymentPage = () => {
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
                                 disabled={isSubmitting}
-                                className="w-full py-4 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors disabled:opacity-50 flex items-center justify-center gap-2 text-lg"
+                                className="w-full py-4 px-4 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors disabled:opacity-50 flex items-center justify-center gap-2 text-lg"
                             >
                                 {isSubmitting ? (
                                     <span className="inline-flex items-center">
